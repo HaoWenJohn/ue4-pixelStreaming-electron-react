@@ -32,6 +32,7 @@ export default class MenuBuilder {
         : this.buildDefaultTemplate();
 
     const menu = Menu.buildFromTemplate(template);
+
     Menu.setApplicationMenu(menu);
 
     return menu;
@@ -195,14 +196,18 @@ export default class MenuBuilder {
   buildDefaultTemplate() {
     const templateDefault = [
       {
-        label: '&File',
+        label: '&开始',
         submenu: [
           {
-            label: '&Open',
+            label: '&新建',
             accelerator: 'Ctrl+O',
           },
           {
-            label: '&Close',
+            label: '&打开',
+            accelerator: 'Ctrl+W',
+          },
+          {
+            label: '&关闭',
             accelerator: 'Ctrl+W',
             click: () => {
               this.mainWindow.close();
@@ -211,20 +216,11 @@ export default class MenuBuilder {
         ],
       },
       {
-        label: '&View',
+        label: '&编辑',
         submenu:
-          process.env.NODE_ENV === 'development' ||
-          process.env.DEBUG_PROD === 'true'
-            ? [
+          [
                 {
-                  label: '&Reload',
-                  accelerator: 'Ctrl+R',
-                  click: () => {
-                    this.mainWindow.webContents.reload();
-                  },
-                },
-                {
-                  label: 'Toggle &Full Screen',
+                  label: '全屏 开/关',
                   accelerator: 'F11',
                   click: () => {
                     this.mainWindow.setFullScreen(
@@ -233,55 +229,14 @@ export default class MenuBuilder {
                   },
                 },
                 {
-                  label: 'Toggle &Developer Tools',
+                  label: '开发者工具',
                   accelerator: 'Alt+Ctrl+I',
                   click: () => {
                     this.mainWindow.webContents.toggleDevTools();
                   },
                 },
               ]
-            : [
-                {
-                  label: 'Toggle &Full Screen',
-                  accelerator: 'F11',
-                  click: () => {
-                    this.mainWindow.setFullScreen(
-                      !this.mainWindow.isFullScreen()
-                    );
-                  },
-                },
-              ],
-      },
-      {
-        label: 'Help',
-        submenu: [
-          {
-            label: 'Learn More',
-            click() {
-              shell.openExternal('https://electronjs.org');
-            },
-          },
-          {
-            label: 'Documentation',
-            click() {
-              shell.openExternal(
-                'https://github.com/electron/electron/tree/master/docs#readme'
-              );
-            },
-          },
-          {
-            label: 'Community Discussions',
-            click() {
-              shell.openExternal('https://www.electronjs.org/community');
-            },
-          },
-          {
-            label: 'Search Issues',
-            click() {
-              shell.openExternal('https://github.com/electron/electron/issues');
-            },
-          },
-        ],
+
       },
     ];
 

@@ -1,0 +1,37 @@
+/*文字颜色*/
+.ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content, .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content {
+  color: white;
+}
+/*背景颜色*/
+.ant-menu{
+  background-color: #292a2d;
+}
+.ant-menu-sub.ant-menu-inline{
+  background-color: #292a2d;
+}
+/*选中项颜色*/
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  background-color: #1890ff;
+}
+/*画个边框*/
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left{
+
+  border-right-width: 1px;
+  border-right-color: grey;
+  border-right-style: solid;
+
+  /*border-right-width: 0px;*/
+  border-left-width: 1px;
+  border-left-color: grey;
+  border-left-style: solid;
+
+  border-top-width: 1px;
+  border-top-color: grey;
+  border-top-style: solid;
+
+  border-bottom-width: 1px;
+  border-bottom-color: grey;
+  border-bottom-style: solid;
+}
+
+

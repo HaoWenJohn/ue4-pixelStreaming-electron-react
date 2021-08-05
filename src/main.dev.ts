@@ -15,6 +15,7 @@ import { app, BrowserWindow, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import socketAdapter from './websocket';
 
 export default class AppUpdater {
   constructor() {
@@ -69,8 +70,7 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728,
+    fullscreen:true,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       nodeIntegration: true,
@@ -108,7 +108,7 @@ const createWindow = async () => {
 
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
-  new AppUpdater();
+ // new AppUpdater();
 };
 
 /**
@@ -123,7 +123,7 @@ app.on('window-all-closed', () => {
   }
 });
 
-app.whenReady().then(createWindow).catch(console.log);
+app.whenReady().then(createWindow).then(socketAdapter).catch(console.log);
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
